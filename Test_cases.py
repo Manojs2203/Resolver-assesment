@@ -28,9 +28,7 @@ def test_2(browser):
         # Locate the list items in the test 2 div
         list_items = wait.until(
             EC.presence_of_all_elements_located(
-                (By.XPATH, '//div[@id="test-2-div"]//ul[@class="list-group"]//following::li')
-            )
-        )
+                (By.XPATH, '//div[@id="test-2-div"]//ul[@class="list-group"]//following::li') ))
         
         print(f"Found {len(list_items)} list items")
         assert len(list_items) == 3
@@ -43,9 +41,7 @@ def test_2(browser):
         # Use following-sibling to locate the badge value of the second list item
         badge_value = wait.until(
             EC.presence_of_element_located(
-                (By.XPATH, '//div[@id="test-2-div"]//ul[@class="list-group"]/li[2]//span[@class="badge badge-pill badge-primary"]')
-            )
-        ).text
+                (By.XPATH, '//div[@id="test-2-div"]//ul[@class="list-group"]/li[2]//span[@class="badge badge-pill badge-primary"]'))).text
         
         print(f"Badge value: {badge_value}")
         assert badge_value == "6"
@@ -63,10 +59,7 @@ def test_3(browser):
     select_element = wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="dropdownMenuButton"]')))
     select_element.text
     
-    # # Wait for all options to be present
-    # options = wait.until(EC.presence_of_all_elements_located((By.XPATH, '//select/option')))
-    # default_option = select_element.find_element(By.XPATH, './option[@selected]')
-    
+   
     assert select_element.text == "Option 1"
     
     # Select "Option 3" from the select list
@@ -84,7 +77,8 @@ def test_4(browser):
     
     assert first_button.is_enabled()
     assert not second_button.is_enabled()
-@pytest.mark.xfail
+    
+@pytest.mark.xfail  #fixture expected to fail
 def test_5(browser):
     wait = WebDriverWait(browser, 10)
     
